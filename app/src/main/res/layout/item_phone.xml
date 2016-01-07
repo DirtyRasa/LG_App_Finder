@@ -3,4 +3,20 @@
     <data>
         <variable name="viewModel" type="in.craigmart.lgappfinder.viewModel.PhoneViewModel" />
     </data>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton"
+            android:src="@{viewModel.phoneImage}"
+            android:layout_gravity="right"
+            android:clickable="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
 </layout>
