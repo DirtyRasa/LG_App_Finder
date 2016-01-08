@@ -5,6 +5,7 @@
     </data>
 
     <RelativeLayout
+        android:id="@+id/item_phone_layout"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">

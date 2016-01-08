@@ -1,41 +1,64 @@
 package in.craigmart.lgappfinder.view.adapter;
 
-import android.app.Activity;
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import in.craigmart.lgappfinder.R;
+import in.craigmart.lgappfinder.databinding.ItemPhoneBinding;
+import in.craigmart.lgappfinder.model.Phone;
 import in.craigmart.lgappfinder.viewModel.PhoneViewModel;
 
 /**
  * Created by craig on 1/5/2016.
  */
-public class PhonesAdapter extends ArrayAdapter<PhoneViewModel>{
+public class PhonesAdapter extends RecyclerView.Adapter<PhonesAdapter.BindingHolder> {
 
-    private Activity mContext;
-    private List<PhoneViewModel> mPhoneViewModels;
+    private Context mContext;
+    private List<Phone> mPhones;
 
-    public PhonesAdapter(Activity context, List<PhoneViewModel> phoneViewModels) {
-        super(context, R.layout.item_phone, phoneViewModels);
-
+    public PhonesAdapter(Context context) {
         mContext = context;
-        mPhoneViewModels = phoneViewModels;
+        mPhones = new ArrayList<>();
     }
 
-    public View getView(int position, View view, ViewGroup parent) {
-        LayoutInflater layoutInflater = mContext.getLayoutInflater();
-        View rowView = layoutInflater.inflate(R.layout.item_phone, null, true);
+    @Override
+    public BindingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        ItemPhoneBinding phoneBinding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.getContext()),
+                R.layout.item_phone,
+                parent,
+                false);
+        return new BindingHolder(phoneBinding);
+    }
 
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.imageButton);
+    @Override
+    public void onBindViewHolder(BindingHolder holder, int position) {
+        ItemPhoneBinding phoneBinding = holder.binding;
+        phoneBinding.setViewModel(new PhoneViewModel(mContext, mPhones.get(position)));
+    }
 
-        imageView.setImageResource(mPhoneViewModels.get(position).getPhoneImage());
+    @Override
+    public int getItemCount() {
+        return mPhones.size();
+    }
 
-        return rowView;
+    public void setItems(List<Phone> phones) {
+        mPhones = phones;
+        notifyDataSetChanged();
+    }
+
+    public static class BindingHolder extends RecyclerView.ViewHolder {
+        private ItemPhoneBinding binding;
+
+        public BindingHolder(ItemPhoneBinding binding) {
+            super(binding.itemPhoneLayout);
+            this.binding = binding;
+        }
     }
 }
