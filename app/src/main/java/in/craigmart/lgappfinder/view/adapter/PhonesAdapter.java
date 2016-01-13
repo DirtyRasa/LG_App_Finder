@@ -1,10 +1,12 @@
 package in.craigmart.lgappfinder.view.adapter;
 
 import android.content.Context;
+import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,7 @@ public class PhonesAdapter extends RecyclerView.Adapter<PhonesAdapter.BindingHol
     @Override
     public void onBindViewHolder(BindingHolder holder, int position) {
         ItemPhoneBinding phoneBinding = holder.binding;
-        phoneBinding.setViewModel(new PhoneViewModel(mContext, mPhones.get(position)));
+        phoneBinding.setViewModel(new PhoneViewModel(mPhones.get(position)));
     }
 
     @Override

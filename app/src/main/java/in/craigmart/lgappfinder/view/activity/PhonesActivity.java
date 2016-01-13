@@ -28,7 +28,7 @@ public class PhonesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_phones);
 
         mPhones = new ArrayList<>();
-        mPhones.add(new Phone(R.drawable.selector_lg_v10, null));
+        mPhones.add(new Phone(R.drawable.selector_lg_v10, null, "Test text"));
 
         mPhoneAdapter = new PhonesAdapter(this);
         mPhoneAdapter.setItems(mPhones);

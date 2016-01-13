@@ -11,9 +11,11 @@ public class Phone {
 
     public int image;
     public List<Carrier> carriers;
+    public String string;
 
-    public Phone(int image, List<Carrier> carriers) {
+    public Phone(int image, List<Carrier> carriers, String string) {
         this.image = image;
         this.carriers = carriers;
+        this.string = string;
     }
 }
